@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import BlogList from "./Components/BlogList";
 
 
 const sampleBlogs = [
@@ -42,40 +43,6 @@ const sampleBlogs = [
 
 
 const urlEndpoint = process.env.REACT_APP_URL_ENDPOINT;
-
-
-
-
-// <BlogList/> is receiving sampleBlogs(through blogs) as a props(console.log to comfirm)
-const BlogList = (props) => {
-  console.log("BlogList")
-  console.log(props);
-  return (
-    // below we are mapping through blogs and returning the resulting values into <BlogListCard/> as a props
-    <div>
-      {props.blogs.map((blog, index) => {
-        return (
-          <BlogListCard blog={blog} key={index} />
-        )
-      })}
-    </div>
-  )
-}
-
-
-
-// Here we are taking the props being passed in ( each blog and their index) and displaying them for the user with the h2 and p tags
-const BlogListCard = (props) => {
-  console.log("BlogListCard")
-  console.log(props);
-  return (
-    <div>
-      <h2>{props.blog.title}</h2>
-      <p>{props.blog.author}</p>
-      <p>{props.blog.text}</p>
-    </div>
-  )
-}
 
 
 const App = () => {
