@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const OptionBar = () => {
+
+const OptionBar = (props) => {
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const [sortBy, setSortBy] = useState("");
     const [order, setOrder] = useState("");
 
+
+    useEffect(() => {
+        props.generateUrlParams(limit, page, sortBy, order)
+    }, [limit, page, sortBy, order])
 
     return (
         <div>

@@ -68,25 +68,29 @@ const App = () => {
 
 
   useEffect(() => {
-    console.log("fetch blogs")
+    // console.log("fetch blogs")
     const fetchBlogs = async () => {
-      console.log(urlEndpoint)
+      // console.log(urlEndpoint)
       // line below is fetching the requested data from the url
       const result = await fetch(
         // here we are passing the information collected from urlParamString into the fetch
         `${urlEndpoint}/blogs${urlParamString}`
       );
-      console.log("result")
-      console.log(result)
+      // console.log("result")
+      // console.log(result)
       // line below is taking the fetched data and .json() it and setting it as a value to variable "blogs"
       const blogs = await result.json()
-      console.log(blogs)
+      // console.log(blogs)
       // line below is passing the requested data after it was .json()'ed (as blogs) as a parameter into setBlogs from useState
       setBlogs(blogs);
     };
     fetchBlogs();
     // array below is called dependency array. when it is empty, useEffect() will run everytime the page gets refreshed. 
-  }, []);
+    // here we are passing urlParamString as our dependency in useEffect function. This means when urlParamString changes, useEffect will run the things inside of it aka update the rendereed information based on the parameters the user inputs
+
+    // **** James's explanation below *****
+    // This way, whenever the function generateUrlParams is called from <OptionBar/>, the urlParamString state variable will update with a new value and the effect function in the useEffect will be triggered, refetching our list of blogs with the updated query params.
+  }, [urlParamString]);
 
   return (
     <div className="App-header">
