@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #f4f4f9;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,29 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.blog-list-card {
+  background-color: #07a0c3;
+  /* border: 1px solid white; */
+  border-radius: 50px;
+  max-width: 800px;
+  margin: 40px;
+  padding: 20px;
+}
+
+label {
+  color: #07a0c3;
+}
+
+.card-title {
+  text-align: center;
+}
+
+input {
+  height: 30px;
+}
+
+select {
+  height: 30px;
 }

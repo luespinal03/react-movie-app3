@@ -3,8 +3,8 @@ const BlogListCard = (props) => {
     console.log("BlogListCard")
     console.log(props);
     return (
-        <div>
-            <h2>{props.blog.title}</h2>
+        <div className="blog-list-card">
+            <h2 className="card-title">{props.blog.title}</h2>
             <p>{props.blog.author}</p>
             <p>{props.blog.text}</p>
         </div>
