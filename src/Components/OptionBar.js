@@ -7,7 +7,7 @@ const OptionBar = (props) => {
     const [sortBy, setSortBy] = useState("");
     const [order, setOrder] = useState("");
 
-
+    // this useEffect is keeping an eye out for any changes that happen on limit, page, sortBy, order. When any of those parameters change it will trigger the useEffect, which will then trigger props.generateUrlParams(limit, page, sortBy, order) which will input the changes made into the url for the API to render the user the desired information.
     useEffect(() => {
         props.generateUrlParams(limit, page, sortBy, order)
     }, [limit, page, sortBy, order])

@@ -61,11 +61,7 @@ const App = () => {
     setUrlParamString(urlParams);
   }
 
-
-
-
   const [blogs, setBlogs] = useState([...sampleBlogs]);
-
 
   useEffect(() => {
     // console.log("fetch blogs")
