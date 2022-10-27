@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import BlogList from "./Components/BlogList";
+import OptionBar from "./Components/OptionBar";
 
 
 const sampleBlogs = [
@@ -49,6 +50,20 @@ const App = () => {
 
   // The empty function passed into useEffect is known as an effect function.
   // The empty array is called the dependency array and is necessary to prevent repeated calls of the effect function every time < App /> renders.If we did not have the empty array here(try taking it out once you have the app up and running to see what happens), the effect function would trigger every time < App /> rerenders which will happen every time setBlogs is called.This triggering an endless loop of rerendering.
+
+  const [urlParamString, setUrlParamString] = useState("");
+
+  // function below is passing the values we have acquired through useState in OptionBar component into urlParams string value, then updating the whole link with the new values with setUrlParamString at teh bottom of the function
+  const generateUrlParams = (limit, page, sortBy, order) => {
+    let urlParams = `?limit=${limit}&page=${page}&sortBy=${sortBy}&order=${order}`;
+    // console.log('urlParams')
+    // console.log(urlParams)
+    setUrlParamString(urlParams);
+  }
+
+
+
+
   const [blogs, setBlogs] = useState([...sampleBlogs]);
 
 
@@ -56,23 +71,26 @@ const App = () => {
     console.log("fetch blogs")
     const fetchBlogs = async () => {
       console.log(urlEndpoint)
+      // line below is fetching the requested data from the url
       const result = await fetch(
-        `${urlEndpoint}/blogs`
+        // here we are passing the information collected from urlParamString into the fetch
+        `${urlEndpoint}/blogs${urlParamString}`
       );
       console.log("result")
       console.log(result)
+      // line below is taking the fetched data and .json() it and setting it as a value to variable "blogs"
       const blogs = await result.json()
       console.log(blogs)
+      // line below is passing the requested data after it was .json()'ed (as blogs) as a parameter into setBlogs from useState
       setBlogs(blogs);
     };
     fetchBlogs();
+    // array below is called dependency array. when it is empty, useEffect() will run everytime the page gets refreshed. 
   }, []);
-
-
-
 
   return (
     <div className="App-header">
+      <OptionBar generateUrlParams={generateUrlParams} />
       <BlogList blogs={blogs} />
     </div>
   );

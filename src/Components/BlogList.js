@@ -4,13 +4,15 @@ const BlogList = (props) => {
     console.log("BlogList")
     console.log(props);
     return (
-        // below we are mapping through blogs and returning the resulting values into <BlogListCard/> as a props
+        // below we are mapping through blogs and returning the resulting values into < BlogListCard /> as a props
         <div>
-            {props.blogs.map((blog, index) => {
-                return (
-                    <BlogListCard blog={blog} key={index} />
-                )
-            })}
+            {
+                props.blogs.map((blog, index) => {
+                    return (
+                        <BlogListCard blog={blog} key={index} />
+                    )
+                })
+            }
         </div>
     )
 }
